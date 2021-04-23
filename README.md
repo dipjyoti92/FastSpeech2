@@ -90,13 +90,14 @@ python3 preprocess.py config/LJSpeech/preprocess.yaml
 ```
 
 Alternately, you can align the corpus by yourself. 
-Download the official MFA package and run
+Download the official MFA (version: 2.0) package and run
 ```
-./montreal-forced-aligner/bin/mfa_align raw_data/LJSpeech/ lexicon/librispeech-lexicon.txt english preprocessed_data/LJSpeech
+mfa download acoustic english
+mfa align raw_data/LJSpeech/ lexicon/librispeech-lexicon.txt english preprocessed_data/LJSpeech/
 ```
 or
 ```
-./montreal-forced-aligner/bin/mfa_train_and_align raw_data/LJSpeech/ lexicon/librispeech-lexicon.txt preprocessed_data/LJSpeech
+mfa train raw_data/LJSpeech/ lexicon/librispeech-lexicon.txt preprocessed_data/LJSpeech
 ```
 
 to align the corpus and then run the preprocessing script.
