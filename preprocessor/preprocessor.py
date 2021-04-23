@@ -72,7 +72,7 @@ class Preprocessor:
 
                 basename = wav_name.split(".")[0]
                 tg_path = os.path.join(
-                    self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(basename)
+                    self.out_dir, speaker, "{}.TextGrid".format(basename.replace('_','-'))
                 )
                 if os.path.exists(tg_path):
                     ret = self.process_utterance(speaker, basename)
@@ -81,7 +81,6 @@ class Preprocessor:
                     else:
                         info, pitch, energy, n = ret
                     out.append(info)
-
                 if len(pitch) > 0:
                     pitch_scaler.partial_fit(pitch.reshape((-1, 1)))
                 if len(energy) > 0:
@@ -156,7 +155,7 @@ class Preprocessor:
         wav_path = os.path.join(self.in_dir, speaker, "{}.wav".format(basename))
         text_path = os.path.join(self.in_dir, speaker, "{}.lab".format(basename))
         tg_path = os.path.join(
-            self.out_dir, "TextGrid", speaker, "{}.TextGrid".format(basename)
+            self.out_dir, speaker, "{}.TextGrid".format(basename.replace('_','-'))
         )
 
         # Get alignments
